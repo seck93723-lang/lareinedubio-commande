@@ -218,7 +218,7 @@ function render(){const m=document.getElementById("main"),bar=document.getElemen
 function vCities(){return `<h2>${t("whichCity")}</h2><p class="note">${t("cityNote")}</p>
   <div class="cities" style="margin-top:12px">${INFO.pvs.map(p=>`<button type="button" class="city" data-city="${esc(p.id)}"><span class="pin">📍</span><span><b>${esc(p.city)}</b><small>${esc(p.addr||"")}</small></span></button>`).join("")||`<p class="empty">${t("noPv")}</p>`}</div>${vMine()}`}
 const dd=s=>s?s.slice(8,10)+"/"+s.slice(5,7):"";
-function vShop(){const p=P(),qq=q.trim().toLowerCase(),list=INFO.cat.filter(c=>!qq||c.n.toLowerCase().includes(qq)||(c.d||"").toLowerCase().includes(qq)).sort((a,b)=>(b.po?1:0)-(a.po?1:0));
+function vShop(){const p=P(),qq=q.trim().toLowerCase(),list=INFO.cat.filter(c=>!qq||c.n.toLowerCase().includes(qq)||(c.d||"").toLowerCase().includes(qq)).sort((a,b)=>((isAv(b.id)?2:0)+(b.po?1:0))-((isAv(a.id)?2:0)+(a.po?1:0)));
   return `<div class="where"><div><small class="note">${t("pv")}</small><br><b>📍 ${esc(p.city)}</b>${p.addr?`<br><small class="note">${esc(p.addr)}</small>`:""}</div><button type="button" class="link" id="chg">${t("change")}</button></div>
   ${INFO.promo?`<div class="promobar">🎉 ${esc(INFO.promo)}</div>`:""}
   <h2>${t("ourProds")}</h2>
